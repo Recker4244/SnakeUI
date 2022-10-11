@@ -15,6 +15,7 @@ class _SnakeUIState extends State<SnakeUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      
       body:SnakePath(),);
   }
 }

@@ -12,7 +12,7 @@ class PathPainter extends CustomPainter {
   }
 
   Path drawCurvePath(int index, Size size) {
-    final indexY = (index * 100 + (index - 1) * 10).toDouble();
+    final indexY = (index * 100 + (index) * 10).toDouble();
     const curveSize = Size(110, 110);
     final lineStartPoint = Offset(60, indexY);
     final lineEndPoint = Offset(size.width - 60, indexY);
@@ -38,7 +38,7 @@ class PathPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    for (var i = 0; i < 5; i++) {
+    for (var i = 1; i <= 7; i++) {
       final path = drawCurvePath(i, size);
       canvas
         ..drawPath(path, pathPaint())
