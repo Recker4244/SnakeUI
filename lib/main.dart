@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poc/view/path.dart';
+import 'package:poc/screens/path.dart';
 
 void main() {
   runApp(const MyApp());
