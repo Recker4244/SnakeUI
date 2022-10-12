@@ -1,7 +1,7 @@
 {
   "Post": {
-    "total_slab": 17,
-    "current_slab": 4,
-    "slab_progress": 43
+    "total_slab": { "int": 17 },
+    "current_slab": { "int": 4 },
+    "slab_progress": { "int": 43 }
   }
 }
