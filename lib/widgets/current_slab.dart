@@ -18,7 +18,7 @@ class CurrentSlab extends StatelessWidget {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(243, 162, 205, 1),
+                    color: Color.fromRGBO(243, 162, 205, 0.5),
                     borderRadius: BorderRadius.all(Radius.elliptical(100, 100)),
                   ))),
           Positioned(

@@ -9,31 +9,27 @@ class CompletedSlab extends StatelessWidget {
         width: 100,
         height: 100,
         decoration: BoxDecoration(),
-        child: Stack(children: <Widget>[
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
           Container(
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(198, 244, 244, 1),
+                    color: Color.fromRGBO(198, 244, 244, 0.5),
                     borderRadius: BorderRadius.all(Radius.elliptical(100, 100)),
                   )),
           
           
-          Positioned(
-            top: 10,
-            left: 10,
-            child: Container(
+          Container(
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(60, 191, 174, 1),
                     borderRadius: BorderRadius.all(Radius.elliptical(80, 80)),
-                  )),),
+                  )),
           
-          Positioned(
-              top: 38,
-              left: 40,
-              child: Text(
+          Text(
                 index.toString().padLeft(2,'0'),
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -44,7 +40,7 @@ class CompletedSlab extends StatelessWidget {
                         0 ,
                     fontWeight: FontWeight.normal,
                     height: 1.3333333333333333),
-              )),
+              )
         ]));
   }
 }

@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 class PathPainter extends CustomPainter {
+  PathPainter({this.total=0});
+ late int total;
   late Color color;
   Paint pathPaint() {
     return Paint()
@@ -12,10 +14,12 @@ class PathPainter extends CustomPainter {
   }
 
   Path drawCurvePath(int index, Size size) {
-    final indexY = index!=0?((index+1) * 125 ).toDouble():125.00;
-    const curveSize = Size(110, 125);
-    final lineStartPoint = Offset(60, indexY);
-    final lineEndPoint = Offset(size.width - 60, indexY);
+    final indexY = 
+    index!=0?(index*120+50).toDouble():50.0;
+    double curveH=120;
+    Size curveSize = Size(110, curveH);
+    final lineStartPoint = Offset(80, indexY);
+    final lineEndPoint = Offset(size.width - 80, indexY);
 
     final startingPoint = index.isOdd ? lineStartPoint : lineEndPoint;
     final endingPoint = index.isOdd ? lineEndPoint : lineStartPoint;
@@ -38,7 +42,7 @@ class PathPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    for (var i = 0; i <= 7; i++) {
+    for (var i = 0; i < total/2; i++) {
       final path = drawCurvePath(i, size);
       canvas
         ..drawPath(path, pathPaint())

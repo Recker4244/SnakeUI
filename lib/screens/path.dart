@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'dart:math' as math;
@@ -17,24 +19,34 @@ class SnakePath extends StatefulWidget {
 
 class _SnakePathState extends State<SnakePath> {
   
-  int n = 5; //number of slabs
-  int x = 1;
-  int currentSlab=3;
+  
+  late PathData _pathData;
+  @override
+  void initState() {
+    super.initState();
+    _pathData=PathData.fromJson({"total_slab": 18,
+  "current_slab": 3,
+  "slab_progress": 43});
+  
+  }
    List<Widget> _widgets=[];
   @override
   Widget build(BuildContext context) {
+    int n=(_pathData.totalSlab!/2).ceil();
+    int x=1;
+    int currentSlab=_pathData.currentSlab!;
     _widgets=[];
     _widgets.add(Padding(
-                padding: const EdgeInsets.all(8)+EdgeInsets.only(top: 40),
+                padding: const EdgeInsets.all(8)+EdgeInsets.only(top: 00),
                 child: CustomPaint(
                   child: Container(),
-                  foregroundPainter: PathOverlayPainter(),
-                  painter: PathPainter(),
+                  foregroundPainter: PathOverlayPainter(completed: _pathData.currentSlab!-1),
+                  painter: PathPainter(total: _pathData.totalSlab!),
                 ),
               ),);
     x=1;
     
-    for(int index=1;index<=n;index++)
+    for(int index=0;index<n;index++)
     {
       if (index % 2 == 0) {
                     //int tempName = index;
@@ -61,20 +73,21 @@ class _SnakePathState extends State<SnakePath> {
                       else 
                       secondSlab=IncompleteSlab(index: tempName,);
                     }
-     
+        if(tempName<=_pathData.totalSlab!)
         _widgets.add(
 
         Positioned(
-          left: 30,
-          top: index!=0?(index*125).toDouble():100,
-          child: firstSlab)
-        );
-         _widgets.add(
-
-        Positioned(
-          left: 200,
-          top: index!=0?(index*125).toDouble():100,
+          left: 60,
+          top: index!=0?index*120:0,
           child: secondSlab)
+        );
+        if(tempName-1<=_pathData.totalSlab!)
+         _widgets.add(
+        
+        Positioned(
+          left: 260,
+          top: index!=0?index*120:0,
+          child: firstSlab)
         );
     }
     else
@@ -103,20 +116,21 @@ class _SnakePathState extends State<SnakePath> {
                       else 
                       secondSlab=IncompleteSlab(index: tempName,);
                     }
-     
+        if(tempName-1<=_pathData.totalSlab!)
         _widgets.add(
 
         Positioned(
-          left: 60,
-          top: index!=0?(index*125).toDouble():100,
-          child: secondSlab)
+          left: 30,
+          top: index!=0?(index*120).toDouble():50,
+          child: firstSlab)
         );
+        if(tempName<=_pathData.totalSlab!)
          _widgets.add(
 
         Positioned(
-          left: 260,
-          top: index!=0?(index*125).toDouble():100,
-          child: firstSlab)
+          left: 200,
+          top: index!=0?(index*120).toDouble():50,
+          child: secondSlab)
         );
     }
     }
@@ -134,21 +148,28 @@ class _SnakePathState extends State<SnakePath> {
         body: Container(
           
           child: SingleChildScrollView(
-            child: AspectRatio(
-              aspectRatio: MediaQuery.of(context).size.aspectRatio,
+            child:Container(
+              height: _pathData.totalSlab!*70,
+              //aspectRatio: MediaQuery.of(context).size.aspectRatio,
               
-              child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints)
-                {
-                  return Stack(
-                    alignment: AlignmentDirectional.topStart,
+              child: Stack(
+                    //alignment: AlignmentDirectional.center,
                     children:
                     _widgets
                      
-                  );
-                }
+                  )
+              // LayoutBuilder(
+              //   builder: (BuildContext context, BoxConstraints constraints)
+              //   {
+              //     return Stack(
+              //       //alignment: AlignmentDirectional.center,
+              //       children:
+              //       _widgets
+                     
+              //     );
+              //   }
                 
-              ),
+              // ),
             ),
           ),
         ),
